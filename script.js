@@ -1,6 +1,5 @@
-const startButton = document.getElementById('start-button')
+const level = document.getElementById('level-counter');
 
-startButton.addEventListener('click', startGame)
 
 function startGame() {
     console.log('game started');
