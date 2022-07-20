@@ -1,23 +1,102 @@
+const headerDiv = document.getElementById('header-div')
 const level = document.getElementById('level-counter');
 const score = document.getElementById('score');
 const sneakerTitle= document.getElementById('sneaker-title');
 const sneakerImage = document.getElementById('sneaker-img');
 const guessButton = document.getElementById('guess-button');
-const inputDiv = document.getElementById('input-div');
-guessButton.addEventListener('click', guessPrice);
+const guessDiv = document.getElementById('input-div');
+const gameDiv = document.getElementById('game-div');
+const textDiv = document.getElementById('text-div');
+let gamePosition = ""; 
+let levelIndex = 1; 
+let sneakerIndex = 0; 
+let totalScore = 0;
+guessButton.addEventListener('click', advanceGame);
 
 
 function startGame() {
-    console.log(sneakerArray.length);
-    let randIndex = Math.floor(Math.random() * 231);
-    sneakerTitle.innerHTML = sneakerArray[randIndex].title;
-    sneakerImage.src = sneakerArray[randIndex].imageUrl;
+    console.log(sneakerArray.length); //to remove
+    level.innerHTML = levelIndex.toString() + "/10";
+    sneakerIndex = Math.floor(Math.random() * 231);
+    sneakerTitle.innerHTML = sneakerArray[sneakerIndex].title;
+    sneakerImage.src = sneakerArray[sneakerIndex].imageUrl;
+    gamePosition = "viewing";
+    levelIndex++;   
 }
 
-function guessPrice() {
-    console.log('reaches');
-    inputDiv.style.display = "block";
+function loadNextLevel() {
+    if(levelIndex > 10) {
+        loadEndScreen();
+        return;
+    }
+    gameDiv.style.display = "block";
+    textDiv.style.display = 'none';
+    guessButton.innerHTML = "Guess Price Button"
+    level.innerHTML = levelIndex.toString() + "/10";
+    sneakerIndex = Math.floor(Math.random() * 231);
+    sneakerTitle.innerHTML = sneakerArray[sneakerIndex].title;
+    sneakerImage.src = sneakerArray[sneakerIndex].imageUrl;
+    gamePosition = "viewing";
+    levelIndex++;
 }
+function advanceGame() {
+    if(gamePosition == "viewing") {
+        guessPrice();
+        return;
+    }
+    if(gamePosition == "guessing") {
+        showScore();
+        return;
+    }
+    if(gamePosition == "results") {
+        loadNextLevel();
+        return;
+    }
+}
+function guessPrice() {
+    console.log('guessPrice function reached');//to remove
+    guessButton.innerHTML = "Submit";
+    gameDiv.style.display = "none";
+    guessDiv.style.display = "flex";
+    gamePosition = "guessing";
+}
+
+function showScore() {
+    console.log('showScore function reached'); //to remove
+    guessButton.innerHTML = "Next"
+    let guess = 0; 
+    if(!isNaN(document.getElementById('guess-input').value) && !(document.getElementById('guess-input').value === "")) {
+        guess = parseInt(document.getElementById('guess-input').value);
+    } 
+    console.log("guess: " + guess)
+    let scoreToAdd = 100 - (Math.abs(sneakerArray[sneakerIndex].lastSale - guess));
+    if(scoreToAdd < 0) scoreToAdd = 0;
+    totalScore = totalScore + scoreToAdd;
+    score.innerHTML = "SCORE: " + totalScore.toString();
+    document.getElementById('guess-input').value = "";
+    guessDiv.style.display = "none";
+    gameDiv.style.display = "none";
+    textDiv.style.display = "flex";
+    document.getElementById('product-text').innerHTML = sneakerArray[sneakerIndex].title;
+    document.getElementById('shoe-price').innerHTML = "$"  + sneakerArray[sneakerIndex].lastSale.toString() + " USD"
+    document.getElementById('player-answer').innerHTML = "Your guess: " + guess.toString();
+    document.getElementById('points-gained').innerHTML = "Points Gained: " + scoreToAdd.toString()
+    gamePosition = "results";
+}
+
+function loadEndScreen() {
+    console.log('loadEndScreen function reached');//to remove
+    gamePosition = "finished";
+    gameDiv.style.display = "none";
+    headerDiv.style.display = "none";
+    document.getElementById('product-text').style.display = "none";
+    document.getElementById('shoe-price').style.display = "none";
+    document.getElementById('player-answer').style.display = "none";
+    document.getElementById('points-gained').style.display = "none";
+    document.getElementById('final-score').innerHTML = "Final Score: " + totalScore.toString();
+    document.getElementById('final-message').style.display = "block";
+}
+
 
 //array with all the sneakers, contains nike, adidas, puma, jordan, reebok, and new balance. Scraped with Python's request module
 //NOTE: Intial startGame call is at the bottom of this array, so the array loads first. 

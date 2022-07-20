@@ -6,9 +6,9 @@
     box-sizing: border-box;
 }
 h1 {
-    margin: 24px;
     display: inline;
 }
+
 .stockXgreen {
     color: #256241;
 }
@@ -46,6 +46,53 @@ h1 {
 }
 
 .input-div {
-    color:blue;
+    text-align: center;
+    height: 800px;
+    width: auto;
     display: none;
+    align-items: center;
+    justify-content: center;
+}
+.black-outline {
+    background-color: #fff;
+    width: 80%;
+    height: 25px;
+    border: 1px solid #000;
+    text-align: center;
+    margin-top: 1%;
+    font-size: .8em;
+    text-transform: uppercase
+}
+.text-div {
+    text-align: center;
+    height: 800px;
+    width: auto;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.guess-input {
+    height: 60%;
+    border: none;
+    top: 40px;
+    bottom: 40px;
+    margin: 0;
+    padding: 10%;
+    width: 80%;
+    text-align: center;
+    font-size: 92px;
+    outline: none
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
