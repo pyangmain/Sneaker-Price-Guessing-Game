@@ -1,13 +1,26 @@
 const level = document.getElementById('level-counter');
+const score = document.getElementById('score');
+const sneakerTitle= document.getElementById('sneaker-title');
+const sneakerImage = document.getElementById('sneaker-img');
+const guessButton = document.getElementById('guess-button');
+const inputDiv = document.getElementById('input-div');
+guessButton.addEventListener('click', guessPrice);
 
 
 function startGame() {
-    console.log('game started');
-    console.log(sneakerArray[0].title);
-    console.log(sneakerArray[0].lastSale + 35);
+    console.log(sneakerArray.length);
+    let randIndex = Math.floor(Math.random() * 231);
+    sneakerTitle.innerHTML = sneakerArray[randIndex].title;
+    sneakerImage.src = sneakerArray[randIndex].imageUrl;
 }
 
-//array with all the sneakers, contains nike, puma, jordan, reebok, and new balance. Scraped with Python's request module
+function guessPrice() {
+    console.log('reaches');
+    inputDiv.style.display = "block";
+}
+
+//array with all the sneakers, contains nike, adidas, puma, jordan, reebok, and new balance. Scraped with Python's request module
+//NOTE: Intial startGame call is at the bottom of this array, so the array loads first. 
 const sneakerArray = [{
     imageUrl: "https://images.stockx.com/images/Nike-Dunk-Low-Jackie-Robinson.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1649445192",
     title: "Nike Dunk Low Jackie Robinson",
@@ -933,3 +946,4 @@ const sneakerArray = [{
         title: "New Balance 2002R Protection Pack Sea Salt",
         lastSale: 278,
         }]
+startGame()

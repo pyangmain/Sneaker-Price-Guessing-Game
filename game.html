@@ -5,17 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="game-styles.css">
+    <link rel="stylesheet" href="game-styles.css"> 
     <script defer src="script.js"></script> 
     <title>Game</title> 
 </head>
 <body>
-    <div>
-        <div>
-            <h1>HI</h1>
-            <h1>HI</h2>
+        <div class="header-div">
+                <h1 class="level-counter">0/10</h1>
+                <h1 class="score">SCORE: 0</h1>
         </div>
-    </div>
-    <button class="fixed-button">Next Level Button</button>
+        <div class="game-div">
+            <h2 id="sneaker-title"></h2>
+            <img id="sneaker-img" src="" class="sneaker-img">
+        </div>
+        <div class="input-div" style="display: none;">
+            Test
+        </div>
+    <button id="guess-button" class="fixed-button">Next Level Button</button>
 </body>
 </html>
