@@ -1,10 +1,15 @@
-/* StockX font import*/
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap');
+/*font imports*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&family=Quicksand:wght@500&display=swap');
 /* StockX Green color: Hex#256241*/
 *, *::before, *::after, h1{
-    font-family: 'Montserrat Alternatives', sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
     box-sizing: border-box;
 }
+.QUICKSAND { 
+    color: #b29cd0;
+    font-family: 'Quicksand', 'sans-serif' !important;
+  } 
+
 h1 {
     display: inline;
 }
