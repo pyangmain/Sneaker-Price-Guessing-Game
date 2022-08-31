@@ -31,7 +31,7 @@ function loadNextLevel() {
     }
     gameDiv.style.display = "block";
     textDiv.style.display = 'none';
-    guessButton.innerHTML = "Guess Price Button"
+    guessButton.innerHTML = "Guess"
     level.innerHTML = levelIndex.toString() + "/10";
     sneakerIndex = Math.floor(Math.random() * 430);
     sneakerTitle.innerHTML = sneakerArray[sneakerIndex].title;
@@ -54,7 +54,6 @@ function advanceGame() {
     }
 }
 function guessPrice() {
-    console.log('guessPrice function reached');//to remove
     guessButton.innerHTML = "Submit";
     gameDiv.style.display = "none";
     guessDiv.style.display = "flex";
@@ -62,7 +61,6 @@ function guessPrice() {
 }
 
 function showScore() {
-    console.log('showScore function reached'); //to remove
     guessButton.innerHTML = "Next"
     let guess = 0; 
     if(!isNaN(document.getElementById('guess-input').value) && !(document.getElementById('guess-input').value === "")) {
@@ -85,7 +83,6 @@ function showScore() {
 }
 
 function loadEndScreen() {
-    console.log('loadEndScreen function reached');//to remove
     gamePosition = "finished";
     gameDiv.style.display = "none";
     headerDiv.style.display = "none";
